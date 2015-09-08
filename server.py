@@ -1,9 +1,11 @@
 import sqlite3, smtplib, os, subprocess
 from flask import Flask, request, session, g, render_template, flash, \
-									redirect, url_for
+									redirect, url_for, abort # import missing abort
 from contextlib import closing
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email import MIMEMultipart # not need from email.abc import abc; just from email import abc
+from email import MIMEText
+
+# for hashing password, it can be use SHA256 or scrypt; Depend on your favor
 
 # App Settings - Should be put in a separate file, but let be it for this app
 DATABASE = "db/servers.db"
